@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "3uah3V7h1bkg/Y1K7O7GinterMtvso//6K8cX11shccNrViHXIZ2yiiW5ecgHbPhEPSH6U1Qv/m8Ac/JK/bK6A==",
+  "dgSpecHash": "x6wSNmlBLSNGiQMjCfMZXSjFrGUUew+bQZgC5RsaUIr4HUE4Go6s7d9Jlk9D41M++7aFZGoQi+JL6Q9jDruWNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Abdalrhman_Hemida\\source\\repos\\WinFormsApp2\\WinFormsApp2\\WinFormsApp2.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\Abdalrhman_Hemida\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
