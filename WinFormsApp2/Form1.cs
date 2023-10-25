@@ -5,6 +5,7 @@ namespace WinFormsApp2
     public partial class Form1 : Form
     {
         SerialPort port = null;
+        string data_rx = ""; // any receiving data is stored here 
         public Form1()
         {
             InitializeComponent();
@@ -64,6 +65,9 @@ namespace WinFormsApp2
         private void connect()
         {
             port = new SerialPort(comboBox1.SelectedItem.ToString());
+            // To add interrupt handler for the recieve
+            port.DataReceived += new SerialDataReceivedEventHandler(data_ex_handler);
+            
             port.BaudRate = 9600;
             port.DataBits = 8;
             port.StopBits = StopBits.One;
@@ -124,9 +128,26 @@ namespace WinFormsApp2
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
+            textBox2.Text = data_rx;
+        }
 
+        // any event is written as follow => the sender & the event args, but here the args for the handler
+        // now any data recieved is stored on data_rx
+        private void data_ex_handler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort) sender;
+            string tmp = sp.ReadExisting();
+            data_rx += tmp;
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                send();
+            }
         }
     }
 }
