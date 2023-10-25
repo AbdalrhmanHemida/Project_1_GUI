@@ -6,6 +6,10 @@ namespace WinFormsApp2
     {
         SerialPort port = null;
         string data_rx = ""; // any receiving data is stored here 
+        bool flag_start = false;  // data_rx only being loaded with data when this flag = 1
+        bool flag_complete = true;
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -67,8 +71,8 @@ namespace WinFormsApp2
             port = new SerialPort(comboBox1.SelectedItem.ToString());
             // To add interrupt handler for the recieve
             port.DataReceived += new SerialDataReceivedEventHandler(data_ex_handler);
-            
-            port.BaudRate = 9600;
+
+            port.BaudRate = 2400;
             port.DataBits = 8;
             port.StopBits = StopBits.One;
 
@@ -118,7 +122,7 @@ namespace WinFormsApp2
         {
             try
             {
-                port.Write(textBox1.Text);
+                port.Write("$" + textBox1.Text + "!");
             }
             catch (Exception ex)
             {
@@ -137,16 +141,87 @@ namespace WinFormsApp2
         // now any data recieved is stored on data_rx
         private void data_ex_handler(object sender, SerialDataReceivedEventArgs e)
         {
-            SerialPort sp = (SerialPort) sender;
+            SerialPort sp = (SerialPort)sender;
             string tmp = sp.ReadExisting();
+            if (tmp.Contains("|"))
+            {
+                data_rx = "";
+                flag_start = true;
+            }
+            else if (tmp.Contains("$"))
+            {
+                flag_start = false;
+                MessageBox.Show(data_rx);
+                // build handler function => 
+            }
+            else if (tmp.Contains('%'))
+            {
+                //////
+            }
+
+            if (flag_start)
+            {
+                data_rx += tmp;
+            }
             data_rx += tmp;
         }
+
+
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 send();
+            }
+        }
+
+        // vid3
+        private void DataReceiveHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string indata = "";
+
+            try
+            {
+                indata = sp.ReadExisting();
+            } catch (Exception ex)
+            {
+
+            }
+
+            int idx_end = indata.IndexOf("|");
+            if ((idx_end >= 0) && flag_start)
+            {
+                flag_start = false;
+                data_rx += indata.Substring(0, idx_end);
+
+            }
+
+            if (flag_start)
+            {
+                data_rx += indata;
+            }
+
+            int idx_start = indata.IndexOf('$');
+            if (idx_start >= 0)
+            {
+                flag_start = true;
+                data_rx = "";
+
+                if (indata.Length > (idx_start + 1))
+                {
+                    data_rx += indata.Substring((idx_start + 1), (indata.Length - 1));
+
+                    // $2!
+                    // if a full frame was already received, then handle it
+                    int idx = data_rx.IndexOf('!');
+                    if (idx >= 0)
+                    {
+                        data_rx = data_rx.Substring(0, idx);
+                    }
+
+                }
             }
         }
     }

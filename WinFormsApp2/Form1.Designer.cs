@@ -105,9 +105,9 @@
             // 
             button4.Location = new Point(139, 206);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(90, 23);
             button4.TabIndex = 6;
-            button4.Text = "send";
+            button4.Text = "send to LCD";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
