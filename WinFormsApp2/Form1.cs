@@ -8,7 +8,7 @@ namespace WinFormsApp2
         string data_rx = ""; // any receiving data is stored here 
         bool flag_start = false;  // data_rx only being loaded with data when this flag = 1
         bool flag_complete = true;
-        
+
 
         public Form1()
         {
@@ -185,7 +185,8 @@ namespace WinFormsApp2
             try
             {
                 indata = sp.ReadExisting();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -223,6 +224,11 @@ namespace WinFormsApp2
 
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            textBox2.Text = data_rx;
         }
     }
 }
